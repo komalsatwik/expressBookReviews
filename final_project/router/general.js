@@ -4,13 +4,6 @@ let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
-
-function getBooks() {
-  return new Promise((resolve, reject) => {
-    resolve(books)
-  })
-}
-
 function getBookByISBN(isbn) {
   return new Promise((resolve, reject) => {
     const isbnNumber = parseInt(isbn)
@@ -21,6 +14,8 @@ function getBookByISBN(isbn) {
     }
   })
 }
+
+
 
 public_users.post("/register", (req,res) => {
   //Write your code here
@@ -36,6 +31,13 @@ public_users.post("/register", (req,res) => {
   }
   return res.status(404).json({message: "User credentials invalid"});
 });
+
+function getBooks() {
+  return new Promise((resolve, reject) => {
+    resolve(books)
+  })
+}
+
 
 // Get the book list available in the shop
 public_users.get('/',async function (req, res) {
